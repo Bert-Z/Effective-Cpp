@@ -15,8 +15,8 @@ void f2(Widget const * pw);
 **3.STL迭代器的const声明。**<br>
 迭代器的作用就像个指针，声明迭代器为const就像声明指针为const一样，表示这个迭代器不得指向不同的东西，但它所指的东西的值是可以改动的。如果希望迭代器所指的东西不可被改动，需要的是const_iterator。
 ```
-const std::vector<int>::iterator iter = vec.begin(); // iter为const迭代器
-std::vector<int>::const_iterator cIter = vec.begin(); // cIter所指的东西为const
+const std::vector<int>::iterator iter = vec.begin(); // iter为const迭代器（不能iter++，相当于锁住了这个地址，但是这个位置上放的东西可以修改。）
+std::vector<int>::const_iterator cIter = vec.begin(); // cIter所指的东西为const，相当于不能修改地址上存的值（被const锁住了）
 ```
 
 **4.const在函数声明时的应用。**<br>

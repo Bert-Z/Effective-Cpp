@@ -6,7 +6,7 @@
 
 **2.将连接期错误移至编译期。**<br>
 通过将copy构造函数和copy assignment操作符定义为private并且不去实现它们，当客户企图拷贝该class的对象时，编译器会阻挠他。如果你不慎在member函数或friend函数之内那么做，轮到连接器发出抱怨。<br>
-但是，我们还是想把连接期错误移至编译期。通过将两个构造函数在一个专门为了阻止copying动作而设计的base class内声明为private就可以实现。
+但是，我们还是想把连接期错误移至编译期。通过将两个构造函数在一个专门为了阻止copying动作而设计的base class内声明为private就可以实现。即base class内部将拷贝构造和拷贝赋值设为private，子类就不会去默认构建这两个函数，friend和member调用也会出错。
 
 ## 请记住：
 * 为驳回编译器自动提供的机能，可将相应的成员函数声明为private并且不予实现。使用想Uncopyable这样的base class也是一种做法。

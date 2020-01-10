@@ -9,7 +9,7 @@ base class中除了析构函数之外通常还有其它virtual函数。<br>
 任何class只要带有virtual函数都几乎确定应该也有一个virtual析构函数，如果class不含virtual函数，通常表示它并不意图被用作一个base class。当class不企图被当做base class，令其析构函数为virtual往往是个馊主意。
 
 **3.只有当class内含至少一个virtual函数，才为它声明virtual析构函数。**<br>
-因为class内含virtual函数时，其对象的体积会增加。
+因为class内含virtual函数时，其对象的体积会增加。为了在运行期决定哪一个virtual函数该被调用，包含virtual的对象中通常会维护一个所谓的vptr(virtual table pointer) 指针。vptr指向一个由函数指针构成的数组，成为vtbl(virtual table)；每一个带有virtual函数的class都有一个相应的vtbl。当对象调用某一virtual函数，实际被调用的函数取决于该对象的vptr所指的那个vtbl——编译器在其中寻找适当的函数指针。
 
 **4.析构函数的运作方式。**<br>
 最深层派生的那个class其析构函数最先被调用，然后是其每一个base class的析构函数被调用。编译器会在基类的派生类的析构函数中创建一个对基类析构函数的调用动作，所以必须为这个函数提供份定义。
